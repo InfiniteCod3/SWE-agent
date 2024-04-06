@@ -702,6 +702,8 @@ def get_model(args: ModelArguments, commands: Optional[list[Command]] = None):
         return HumanThoughtModel(args, commands)
     if args.model_name == "replay":
         return ReplayModel(args, commands)
+    elif args.model_name in ["llama13b", "llama70b", "mistral7b", "mixtral8x7b", "redpajama7b"]:
+        return TogetherModel(args, commands)
     elif args.model_name.startswith("gpt") or args.model_name.startswith("ft:gpt") or args.model_name.startswith("azure:gpt"):
         return OpenAIModel(args, commands)
     elif args.model_name.startswith("claude"):
